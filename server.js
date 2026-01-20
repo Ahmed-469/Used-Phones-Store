@@ -6,10 +6,12 @@ const mongoose = require("mongoose")
 const morgan = require('morgan')
 const authController = require("./controllers/auth.js");
 const indexController = require("./controllers/index.routes.js");
+
 const session = require('express-session');
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 const methodOverride = require('method-override')
+
 
 app.use(express.static('public')) // my app will serve all static files from public folder
 app.use(express.urlencoded({ extended: false }));
@@ -65,7 +67,6 @@ connectToDB() // connect to database
 // Routes go here
 app.use('/auth',authController)
 app.use('/',indexController)
-
 
 // PROTECTED ROUTES:
 app.use(isSignedIn)
