@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const Phone = require('../models/Phone')
-
+-
 //read all
 router.get('/', async(req,res)=>{
     try{
