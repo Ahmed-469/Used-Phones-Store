@@ -27,7 +27,6 @@ const phoneSchema = new mongoose.Schema({
   seller: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true,
   }
 });
 

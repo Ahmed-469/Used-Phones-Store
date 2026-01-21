@@ -6,6 +6,17 @@
     <title>Used Phones</title>
 </head>
 <body>
+    <%- include('../navbar') %>
     <h1>Used Phones</h1>
+
+    <% allPhones.forEach((onePhone) => { %>
+        <p>Phone Name: <%= onePhone.phoneName %> </p>
+        <p>Color: <%= onePhone.color %></p>
+        <p>Usage Duration: <%= onePhone.usageDuration %></p>
+        <p>Price: <%= onePhone.price %></p>
+        <p>Description: <%= onePhone.description %></p>
+        <p>available: <%= onePhone.available %></p>
+    <% }); %>
+
 </body>
 </html>
