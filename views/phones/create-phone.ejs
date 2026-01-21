@@ -6,6 +6,37 @@
     <title>Create Phone</title>
 </head>
 <body>
+    <%- include('../navbar') %>
     <h1>Add a new used phone</h1>
+
+      <form action="/used-phones" method="post">
+
+        <label for="phoneName">Phone Name:</label>
+        <input id="phoneName" name="phoneName" type="text">
+
+        <label for="color">Color:</label>
+        <input id="color" name="color" type="text">
+
+        <label for="usageDuration">Usage Duration:</label>
+
+        <select name="usageDuration" id="usageDuration">
+            <option value="Less than 6 months">Less than 6 months</option>
+            <option value="6-12 months">6-12 months</option>
+            <option value="1-2 years">1-2 years</option>
+            <option value="More than 2 years">More than 2 years</option>
+        </select>
+
+        <label for="price">Price:</label>
+        <input id="price" name="price" type="text">
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+
+        <label for="available">available:</label>
+        <input id="available" name="available" type="checkbox">
+
+        <button type="submit">Create</button>
+
+      </form>
 </body>
 </html>
