@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const Phone = require('../models/Phone')
--
+
 //read all
 router.get('/', async(req,res)=>{
     try{
@@ -24,6 +24,12 @@ router.get('/create', async(req,res)=>{
 
 router.post('/', async(req,res) => {
     try {
+        if(req.body.available){
+            req.body.available = "yes";
+        }
+        else{
+            req.body.available = "no";
+        }
         const createdPhone = await Phone.create(req.body);
         res.redirect('/used-phones');
     }
