@@ -11,7 +11,7 @@ router.get('/', async(req,res)=>{
     catch (error) {
         console.log('ERROR:', error);
     }
-})
+});
 
 //create new used phone
 router.get('/create', async(req,res)=>{
@@ -25,6 +25,9 @@ router.post('/', async(req,res) => {
         }
         else{
             req.body.available = false;
+        }
+        if (req.session.user) {
+            req.body.seller = req.session.user._id;
         }
         const createdPhone = await Phone.create(req.body);
         res.redirect('/used-phones');
@@ -58,6 +61,18 @@ router.post('/update/:id', async (req,res)=>{
     const updatedPhone = await Phone.findByIdAndUpdate(req.params.id, req.body);
     res.redirect('/used-phones');
     console.log('app is working (UPDATE)');
+    }
+    catch (error) {
+        console.log('ERROR:', error);
+    }
+});
+
+//read one
+router.get('/:id', async (req, res) =>{
+    try {
+        const foundPhone = await Phone.findById(req.params.id).populate('seller');
+        res.render('phones/show-phone.ejs', {foundPhone: foundPhone});
+        console.log('app is working (READ ONE)');
     }
     catch (error) {
         console.log('ERROR:', error);
