@@ -1,9 +1,6 @@
 <div> 
     <a href="/used-phones">All Used Phones</a>
-    
-    <% if (user && user.role === 'seller') { %>
-        <a href="/used-phones/create">Add Used Phone</a>
-    <% } %>
+    <a href="/used-phones/create">Add Used Phone</a>
 
     <% if (user){ %>
     <a href="/auth/sign-out">Logout</a>

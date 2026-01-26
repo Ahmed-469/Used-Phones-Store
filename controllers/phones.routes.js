@@ -1,12 +1,6 @@
 const router = require("express").Router()
 const Phone = require('../models/Phone')
-
-function isSeller(req, res, next) {
-    if (!req.session.user || req.session.user.role !== 'seller') {
-        return;
-    }
-    next();
-}
+const isSeller = require('../middleware/is-seller')
 
 //show all used phones
 router.get('/', async(req,res)=>{
@@ -22,6 +16,9 @@ router.get('/', async(req,res)=>{
 
 //create new used phone
 router.get('/create', async(req,res)=>{
+    if(req.session.user.role === 'buyer'){
+        return res.send("Buyers cannot add used phones.");
+    }
     res.render('phones/create-phone.ejs');
 })
 
