@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User.js");
 const bcrypt = require("bcrypt");
-
+const validator = require("validator");
 
 // Sign up routes
 router.get("/sign-up", (req, res) => {
@@ -13,6 +13,20 @@ router.post("/sign-up", async (req, res) => {
   const userInDatabase = await User.findOne({ username: req.body.username });
   if (userInDatabase) {
     return res.send("Username already taken.");
+  }
+
+  if (!validator.isEmail(req.body.email)) {
+    return res.send("Invalid email format.");
+  }
+
+  const emailInDatabase = await User.findOne({ email: req.body.email });
+  if (emailInDatabase) {
+    return res.send("Email already registered.");
+  }
+
+  const phoneInDatabase = await User.findOne({ phone: req.body.phone })
+  if (phoneInDatabase) {
+    return res.send("Phone number already registered.");
   }
 
   if (req.body.password !== req.body.confirmPassword) {
