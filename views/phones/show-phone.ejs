@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seller Info</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <%- include('../navbar') %>
@@ -13,7 +14,7 @@
     <p>Email: <%= foundPhone.seller.email %></p>
 
     <% if (user && foundPhone.seller._id.toString() === user._id.toString()) { %>
-        <a href="/used-phones/update/<%= foundPhone._id %>">Update</a>
+        <button onclick="window.location.href='/used-phones/update/<%= foundPhone._id %>'">Update</button>
         <form action="/used-phones/delete/<%= foundPhone._id %>" method="post">
             <button>Delete</button>
         </form>
