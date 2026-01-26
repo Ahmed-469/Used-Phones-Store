@@ -6,6 +6,7 @@
     <title>Update Used Phone</title>
 </head>
 <body>
+    <%- include('../navbar') %>
     <h1>Update <%= foundPhone.phoneName %></h1>
 
     <form action="/used-phones/update/<%= foundPhone._id %>" method="post">
@@ -16,7 +17,7 @@
         <label for="color">Color:</label>
         <input value="<%= foundPhone.color %>" name="color" id="color" type="text">
 
-        <label for="usageDuration">Usage Duration: </label>
+        <label for="usageDuration">Used for: </label>
         <select name="usageDuration" id="usageDuration">
 
             <option value="Less than 6 months" <% if (foundPhone.usageDuration === "Less than 6 months") { %> selected <% } %>>

@@ -1,6 +1,13 @@
 const router = require("express").Router()
 const Phone = require('../models/Phone')
 
+function isSeller(req, res, next) {
+    if (!req.session.user || req.session.user.role !== 'seller') {
+        return;
+    }
+    next();
+}
+
 //show all used phones
 router.get('/', async(req,res)=>{
     try{
@@ -18,7 +25,7 @@ router.get('/create', async(req,res)=>{
     res.render('phones/create-phone.ejs');
 })
 
-router.post('/', async(req,res) => {
+router.post('/', isSeller, async(req,res) => {
     try {
         if(req.body.available){
             req.body.available = true;
@@ -50,8 +57,12 @@ router.get('/update/:id', async(req,res)=>{
     }
 })
 
-router.post('/update/:id', async (req,res)=>{
+router.post('/update/:id', isSeller, async (req,res)=>{
     try {
+        const foundPhone = await Phone.findById(req.params.id);
+        if (!foundPhone.seller.equals(req.session.user._id)) {
+            return;
+        }
         if(req.body.available){
             req.body.available = true;
         }
@@ -80,8 +91,12 @@ router.get('/:id', async (req, res) =>{
 });
 
 //delete used phone
-router.post('/delete/:id', async (req, res) => {
+router.post('/delete/:id', isSeller, async (req, res) => {
     try {
+        const foundPhone = await Phone.findById(req.params.id);
+        if (!foundPhone.seller.equals(req.session.user._id)) {
+            return;
+        }
         await Phone.findByIdAndDelete(req.params.id);
         res.redirect('/used-phones');
         console.log('app is working (DELETE)');

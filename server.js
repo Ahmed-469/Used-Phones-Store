@@ -61,8 +61,11 @@ connectToDB() // connect to database
 
 
 
-
-
+//Make user data available to views to show create link for sellers only with navbar.ejs
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
 
 // Routes go here
 app.use('/auth',authController)
@@ -72,6 +75,7 @@ app.use('/used-phones',phonesController)
 // PROTECTED ROUTES:
 app.use(isSignedIn)
 // Everything under the user NEEDS to be logged in to se
+
 
 
 

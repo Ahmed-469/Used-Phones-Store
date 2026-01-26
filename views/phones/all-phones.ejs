@@ -12,16 +12,12 @@
     <% allPhones.forEach((onePhone) => { %>
         <p>Phone Name: <%= onePhone.phoneName %> </p>
         <p>Color: <%= onePhone.color %></p>
-        <p>Usage Duration: <%= onePhone.usageDuration %></p>
+        <p>Used for: <%= onePhone.usageDuration %></p>
         <p>Price: <%= onePhone.price %></p>
         <p>Description: <%= onePhone.description %></p>
         <p>Available: <%= onePhone.available ? "Yes" : "No" %></p>
 
         <a href="/used-phones/<%= onePhone._id %>">Seller Contact Information</a>
-        <a href="/used-phones/update/<%= onePhone._id %>">Update</a>
-        <form action="/used-phones/delete/<%= onePhone._id %>" method="post">
-        <button>Delete</button>
-        </form>
     <% }); %>
 
 </body>
