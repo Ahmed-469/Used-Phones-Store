@@ -17,6 +17,7 @@
         <p>Description: <%= onePhone.description %></p>
         <p>Available: <%= onePhone.available ? "Yes" : "No" %></p>
 
+        <a href="/used-phones/update/<%= onePhone._id %>">Update</a>
         <form action="/used-phones/delete/<%= onePhone._id %>" method="post">
         <button>Delete</button>
         </form>

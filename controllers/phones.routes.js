@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const Phone = require('../models/Phone')
 
-//read all
+//show all used phones
 router.get('/', async(req,res)=>{
     try{
     const allPhones = await Phone.find();
@@ -13,7 +13,7 @@ router.get('/', async(req,res)=>{
     }
 })
 
-//create new phone
+//create new used phone
 router.get('/create', async(req,res)=>{
     res.render('phones/create-phone.ejs');
 })
@@ -35,7 +35,36 @@ router.post('/', async(req,res) => {
     }
 });
 
-//delete
+// Update used phone
+router.get('/update/:id', async(req,res)=>{
+    try {
+        const foundPhone = await Phone.findById(req.params.id);
+        res.render('phones/update-phone.ejs',{foundPhone: foundPhone});
+        console.log('app is working (UPDATE)');
+    }
+    catch (error) {
+        console.log('ERROR:', error);
+    }
+})
+
+router.post('/update/:id', async (req,res)=>{
+    try {
+        if(req.body.available){
+            req.body.available = true;
+        }
+        else{
+            req.body.available = false;
+        }
+    const updatedPhone = await Phone.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect('/used-phones');
+    console.log('app is working (UPDATE)');
+    }
+    catch (error) {
+        console.log('ERROR:', error);
+    }
+});
+
+//delete used phone
 router.post('/delete/:id', async (req, res) => {
     try {
         await Phone.findByIdAndDelete(req.params.id);

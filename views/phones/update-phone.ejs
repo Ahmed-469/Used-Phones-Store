@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Used Phone</title>
+</head>
+<body>
+    <h1>Update <%= foundPhone.phoneName %></h1>
+
+    <form action="/used-phones/update/<%= foundPhone._id %>" method="post">
+
+        <label for="phoneName">Phone Name:</label>
+        <input value="<%= foundPhone.phoneName %>" name="phoneName" id="phoneName" type="text">
+
+        <label for="color">Color:</label>
+        <input value="<%= foundPhone.color %>" name="color" id="color" type="text">
+
+        <label for="usageDuration">Usage Duration: </label>
+        <select name="usageDuration" id="usageDuration">
+
+            <option value="Less than 6 months" <% if (foundPhone.usageDuration === "Less than 6 months") { %> selected <% } %>>
+                Less than 6 months
+            </option>
+
+            <option value="6-12 months" <% if (foundPhone.usageDuration === "6-12 months") { %> selected <% } %>>
+                6-12 months
+            </option>
+
+            <option value="1-2 years" <% if (foundPhone.usageDuration === "1-2 years") { %> selected <% } %>>
+                1-2 years
+            </option>
+
+            <option value="More than 2 years" <% if (foundPhone.usageDuration === "More than 2 years") { %> selected <% } %>>
+                More than 2 years
+            </option>
+
+        </select>
+
+        <label for="price">Price:</label>
+        <input value="<%= foundPhone.price %>" name="price" id="price" type="text">
+
+        <label for="description">Description:</label>
+        <textarea name="description" id="description"><%= foundPhone.description %></textarea>
+
+        <label for="available">Available: </label>
+        <input <% if(foundPhone.available) {%> checked <% } %> name="available" id="available" type="checkbox">
+    
+        <button >Update Phone</button>
+    </form>
+</body>
+</html>
