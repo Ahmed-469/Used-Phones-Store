@@ -7,17 +7,19 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <%- include('../navbar') %>
+    <div class=phone-seller-info>
     <h1><%= foundPhone.phoneName %> - Seller Contact Information</h1>
     <p>Seller Name: <%= foundPhone.seller.username %></p>
     <p>Phone: <%= foundPhone.seller.phone %></p>
     <p>Email: <%= foundPhone.seller.email %></p>
-
     <% if (user && foundPhone.seller._id.toString() === user._id.toString()) { %>
-        <button onclick="window.location.href='/used-phones/update/<%= foundPhone._id %>'">Update</button>
+        <a class="update-btn" href='/used-phones/update/<%= foundPhone._id %>'>Update</a>
         <form action="/used-phones/delete/<%= foundPhone._id %>" method="post">
-            <button>Delete</button>
+            <button class="delete-btn">Delete</button>
         </form>
     <% } %>
+    <p>------------</p>
+    <a class="links" href="/used-phones">Back</a>
+    </div>
 </body>
 </html>

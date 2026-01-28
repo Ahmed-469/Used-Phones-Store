@@ -8,6 +8,7 @@
 </head>
 <body>
     <%- include('../navbar') %>
+    <div class="page-container">
     <h1>Add a new used phone</h1>
 
       <form action="/used-phones" method="post">
@@ -33,11 +34,13 @@
         <label for="description">Description:</label>
         <textarea id="description" name="description"></textarea>
 
-        <label for="available">available:</label>
-        <input id="available" name="available" type="checkbox">
+        <label for="available">available:
+          <input id="available" name="available" type="checkbox">
+        </label>
 
         <button type="submit">Create</button>
 
       </form>
+    </div>
 </body>
 </html>

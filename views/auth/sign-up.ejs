@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-    <%- include('../navbar') %>
+    <div class="auth-container">
     <h1>Create a new account!</h1>
     <form action="/auth/sign-up" method="post">
 
@@ -32,7 +32,8 @@
         <option value="seller">Seller</option>
       </select>
 
-      <button type="submit">Sign up</button>
+      <button class="submit-btn" type="submit">Sign up</button>
     </form>
+  </div>
   </body>
 </html>

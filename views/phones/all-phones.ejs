@@ -8,18 +8,22 @@
 </head>
 <body>
     <%- include('../navbar') %>
+    <div class="page-container">
     <h1>Used Phones</h1>
 
+    <div class="phone-list-box">
     <% allPhones.forEach((onePhone) => { %>
-        <p>Phone Name: <%= onePhone.phoneName %> </p>
-        <p>Color: <%= onePhone.color %></p>
-        <p>Used for: <%= onePhone.usageDuration %></p>
-        <p>Price: <%= onePhone.price %></p>
-        <p>Description: <%= onePhone.description %></p>
-        <p>Available: <%= onePhone.available ? "Yes" : "No" %></p>
-
-        <a href="/used-phones/<%= onePhone._id %>">Seller Contact Information</a>
+        <ul class="phone-list">
+            <li>
+                <h2 class="phone-list"> <%= onePhone.phoneName %> </h2>
+                <p class="phone-list">Color: <%= onePhone.color %></p>
+                <p class="phone-list">Used for: <%= onePhone.usageDuration %></p>
+                <p class="phone-list">Price: <%= onePhone.price %></p>
+                <p class="phone-list">Description: <%= onePhone.description %></p>
+                <p class="phone-list">Available: <%= onePhone.available ? "Yes" : "No" %></p>
+                <a href="/used-phones/<%= onePhone._id %>">Seller Contact Information</a>
+            </li>
     <% }); %>
-
+    </div>
 </body>
 </html>
