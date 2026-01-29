@@ -18,9 +18,9 @@
                 <h2 class="phone-list"> <%= onePhone.phoneName %> </h2>
                 <p class="phone-list">Color: <%= onePhone.color %></p>
                 <p class="phone-list">Used for: <%= onePhone.usageDuration %></p>
-                <p class="phone-list">Price: <%= onePhone.price %></p>
+                <p class="phone-list">Price: <%= onePhone.price %> BD</p>
                 <p class="phone-list">Description: <%= onePhone.description %></p>
-                <p class="phone-list">Available: <%= onePhone.available ? "Yes" : "No" %></p>
+                <p class="phone-list">Available: <%= onePhone.available ? "✔️" : "❌" %></p>
                 <a href="/used-phones/<%= onePhone._id %>">Seller Contact Information</a>
             </li>
     <% }); %>
