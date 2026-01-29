@@ -1,13 +1,12 @@
 const router = require("express").Router()
 const Phone = require('../models/Phone')
-const isSeller = require('../middleware/is-seller')
+const isSeller = require('../middleware/is-seller');
 
 //show all used phones
 router.get('/', async(req,res)=>{
     try{
     const allPhones = await Phone.find();
     res.render('phones/all-phones.ejs',{allPhones: allPhones});
-    console.log('app is working (READ ALL PHONES)');
     }
     catch (error) {
         console.log('ERROR:', error);
@@ -35,7 +34,6 @@ router.post('/', isSeller, async(req,res) => {
         }
         const createdPhone = await Phone.create(req.body);
         res.redirect('/used-phones');
-        console.log('app is working (CREATE)');
     }
     catch (error) {
         console.log('ERROR:', error);
@@ -47,7 +45,6 @@ router.get('/update/:id', async(req,res)=>{
     try {
         const foundPhone = await Phone.findById(req.params.id);
         res.render('phones/update-phone.ejs',{foundPhone: foundPhone});
-        console.log('app is working (UPDATE)');
     }
     catch (error) {
         console.log('ERROR:', error);
@@ -68,7 +65,6 @@ router.post('/update/:id', isSeller, async (req,res)=>{
         }
     const updatedPhone = await Phone.findByIdAndUpdate(req.params.id, req.body);
     res.redirect('/used-phones');
-    console.log('app is working (UPDATE)');
     }
     catch (error) {
         console.log('ERROR:', error);
@@ -80,7 +76,6 @@ router.get('/:id', async (req, res) =>{
     try {
         const foundPhone = await Phone.findById(req.params.id).populate('seller');
         res.render('phones/show-phone.ejs', {foundPhone: foundPhone});
-        console.log('app is working (READ ONE)');
     }
     catch (error) {
         console.log('ERROR:', error);
@@ -96,7 +91,6 @@ router.post('/delete/:id', isSeller, async (req, res) => {
         }
         await Phone.findByIdAndDelete(req.params.id);
         res.redirect('/used-phones');
-        console.log('app is working (DELETE)');
     }
     catch (error) {
         console.log('ERROR:', error);

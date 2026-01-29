@@ -9,7 +9,7 @@
 <body>
     <div class=phone-seller-info>
     <h1><%= foundPhone.phoneName %> - Seller Contact Information</h1>
-    <p>Seller Name: <%= foundPhone.seller.username %></p>
+    <p>Seller User Name: <%= foundPhone.seller.username %></p>
     <p>Phone: <%= foundPhone.seller.phone %></p>
     <p>Email: <%= foundPhone.seller.email %></p>
     <% if (user && foundPhone.seller._id.toString() === user._id.toString()) { %>

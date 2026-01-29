@@ -29,6 +29,9 @@ html, body {
     margin: 0;
 }
 
+.phone-list h2 {
+    margin-bottom: 11px;
+}
 .phone-list li {
     background: #fff;
     margin: 12px 0;
@@ -245,10 +248,6 @@ nav {
 
 .page-container .submit-btn:hover {
     background: #a91d4a;
-}
-
-.phone-list h2 {
-    margin-bottom: 11px;
 }
 
 p.available {
